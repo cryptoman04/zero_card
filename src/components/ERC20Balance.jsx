@@ -15,6 +15,72 @@ const appAssets = [
   },
 ];
 
+const optimismAssets = [
+  {
+    token_address: "0x28c3...d92d",
+    name: "Uniswap - WETH/OP",
+    symbol: "WETHOP",
+    logo: require("../assets/eth-op-pool.png"),
+    thumbnail: require("../assets/eth-op-pool.png"),
+    decimals: 16,
+    balance: "40347",
+  },
+  {
+    token_address: "0x28c3...d92d",
+    name: "Mai Finance - USD",
+    symbol: "MAI",
+    logo: "https://cdn.discordapp.com/attachments/990366843636166676/990369187727831101/mimatic-op.png",
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/990366843636166676/990369187727831101/mimatic-op.png",
+    decimals: 3,
+    balance: "42069",
+  },
+];
+
+const polygonAssets = [
+  {
+    token_address: "0x28c3...d92d",
+    name: "Uniswap - WETH/MATIC",
+    symbol: "WETHMATIC",
+    logo: require("../assets/eth-poly-pool.png"),
+    thumbnail: require("../assets/eth-poly-pool.png"),
+    balance: "40347",
+  },
+  {
+    token_address: "0x28c3...d92d",
+    name: "Mai USD",
+    symbol: "MAI",
+    logo: "https://cdn.discordapp.com/attachments/990366843636166676/990369188184985610/mimatic-poly.png",
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/990366843636166676/990369188184985610/mimatic-poly.png",
+    decimals: 3,
+    balance: "42069",
+  },
+];
+
+const cardVaults = [
+  {
+    token_address: "0x28c3...d92d",
+    name: "Mai Finance - USD (Polygon)",
+    symbol: "MAI",
+    logo: "https://cdn.discordapp.com/attachments/990366843636166676/990369188184985610/mimatic-poly.png",
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/990366843636166676/990369188184985610/mimatic-poly.png",
+    decimals: 3,
+    balance: "42069",
+  },
+  {
+    token_address: "0x28c3...d92d",
+    name: "Mai Finance - USD (Optimism)",
+    symbol: "MAI",
+    logo: "https://cdn.discordapp.com/attachments/990366843636166676/990369187727831101/mimatic-op.png",
+    thumbnail:
+      "https://cdn.discordapp.com/attachments/990366843636166676/990369187727831101/mimatic-op.png",
+    decimals: 3,
+    balance: "42069",
+  },
+];
+
 function ERC20Balance(props) {
   const { data: assets } = useERC20Balances(props);
   const { Moralis } = useMoralis();
@@ -66,7 +132,7 @@ function ERC20Balance(props) {
     <div style={{ width: "65vw", padding: "15px" }}>
       <h1 style={{ marginBottom: 10 }}>💳 Card Vault</h1>
       <Table
-        dataSource={assets}
+        dataSource={cardVaults}
         columns={columns}
         rowKey={(record) => {
           return record.token_address;
@@ -115,13 +181,41 @@ function ERC20Balance(props) {
             <h2>Optimism</h2>
           </div>
           <Table
-            dataSource={appAssets}
+            dataSource={optimismAssets}
             columns={columns}
             rowKey={(record) => {
               return record.token_address;
             }}
           />
 
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                marginBottom: 15,
+              }}
+            >
+              <img
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  objectFit: "contain",
+                }}
+                src="https://i.pinimg.com/474x/9b/1e/97/9b1e977d00b5d887608b156705a10759.jpg"
+              />
+              <h2>Polygon</h2>
+            </div>
+            <Table
+              dataSource={polygonAssets}
+              columns={columns}
+              rowKey={(record) => {
+                return record.token_address;
+              }}
+            />
+          </div>
           <div>
             <div
               style={{
