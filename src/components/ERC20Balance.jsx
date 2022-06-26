@@ -1,6 +1,8 @@
 import { useMoralis, useERC20Balances } from "react-moralis";
 import { Skeleton, Table } from "antd";
 import { getEllipsisTxt } from "../helpers/formatters";
+import "../card.css";
+import CreditCard from "./CreditCard";
 
 function ERC20Balance(props) {
   const { data: assets } = useERC20Balances(props);
@@ -47,8 +49,13 @@ function ERC20Balance(props) {
     },
   ];
 
+  const networkNames = ["poly", "op", "skale", "boba", "gnosis"];
+
   return (
     <div style={{ width: "65vw", padding: "15px" }}>
+      <h1> 💳 Credit Card here</h1>
+      <button>change protocol</button>
+      <CreditCard network={networkNames} />
       <h1>💰Token Balances</h1>
       <Skeleton loading={!assets}>
         <Table
