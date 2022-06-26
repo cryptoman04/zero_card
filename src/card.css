@@ -26,7 +26,7 @@ html {
   perspective: 600px;
 }
 
-.card__part_poly {
+.card__part_polygon {
   box-shadow: 1px 1px #aaa3a3;
   top: 0;
   /* position: absolute; */
@@ -60,7 +60,7 @@ html {
   -moz-backface-visibility: hidden;
 }
 
-.card__part_op {
+.card__part_optimism {
   box-shadow: 1px 1px #aaa3a3;
   top: 0;
   /* position: absolute; */

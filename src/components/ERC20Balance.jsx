@@ -3,6 +3,7 @@ import { Skeleton, Table } from "antd";
 import { getEllipsisTxt } from "../helpers/formatters";
 import "../card.css";
 import CreditCard from "./CreditCard";
+import { useState } from "react";
 
 const appAssets = [
   {
@@ -86,6 +87,8 @@ const cardVaults = [
 function ERC20Balance(props) {
   const { data: assets } = useERC20Balances(props);
   const { Moralis } = useMoralis();
+  const [currentProtocol, setCurrentProtocol] = useState("skale");
+  const [showNetworks, setShowNetwork] = useState(false);
 
   console.log("ASSETS", assets);
 
@@ -130,14 +133,58 @@ function ERC20Balance(props) {
     },
   ];
 
-  const networkNames = ["poly", "op", "skale", "boba", "gnosis"];
-
   return (
     <div style={{ width: "65vw", padding: "15px" }}>
-      <h1> 💳 Credit Card here</h1>
-      <button>change protocol</button>
-      <CreditCard network={networkNames} />
-      <h1>💰Token Balances</h1>
+      <button onClick={() => setShowNetwork(true)}>
+        change protocol - Current Protocol - {currentProtocol}
+      </button>
+      {showNetworks && (
+        <div style={{ marginTop: 10, marginBottom: 25 }}>
+          <button
+            onClick={() => {
+              setCurrentProtocol("polygon");
+              setShowNetwork(false);
+            }}
+          >
+            Polygon
+          </button>
+          <button
+            onClick={() => {
+              setCurrentProtocol("optimism");
+              setShowNetwork(false);
+            }}
+          >
+            Optimism
+          </button>
+          <button
+            onClick={() => {
+              setCurrentProtocol("skale");
+              setShowNetwork(false);
+            }}
+          >
+            Skale
+          </button>
+          <button
+            onClick={() => {
+              setCurrentProtocol("boba");
+              setShowNetwork(false);
+            }}
+          >
+            Boba
+          </button>
+          <button
+            onClick={() => {
+              setCurrentProtocol("gnosis");
+              setShowNetwork(false);
+            }}
+          >
+            Gnosis
+          </button>
+        </div>
+      )}
+
+      <h1 style={{ marginTop: 20, marginBottom: 10 }}> 💳 Credit Card here</h1>
+      <CreditCard network={currentProtocol} />
       <h1 style={{ marginBottom: 10 }}>💳 Card Vault</h1>
       <Table
         dataSource={cardVaults}
